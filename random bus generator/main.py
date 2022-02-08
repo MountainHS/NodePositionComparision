@@ -1,4 +1,3 @@
-from random import random
 import pandas as pd
 import math
 import random
@@ -43,7 +42,5 @@ def get_bus_data(path):
     print(bus_coordinate, "\n", "*"*10)
     bus_coordinate.to_json("./random bus generator/result/random bus position.json")
 
-
-
 if __name__ == '__main__':
-    get_bus_data("./random bus generator/data/Bus_data_118bus.csv")          
+    get_bus_data("./random bus generator/data/bus-1062.csv")          
