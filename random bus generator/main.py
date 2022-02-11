@@ -17,7 +17,7 @@ BUS_PATH = ROOT + DATA + BUS + CSV
 BRANCH_PATH = ROOT + DATA + BRANCH + CSV
 
 
-def get_bus_data(path):  
+def make_random_bus_position(path):  
     # bus 데이터 읽기
     bus_data = pd.read_csv(path)
     print("get bus data", bus_data, "*"*10, end="\n")
@@ -103,6 +103,6 @@ def get_bus_degree(path):
 
 if __name__ == '__main__':
     # print(BUS_PATH)
-    # get_bus_data(BUS_PATH)
+    # make_random_bus_position(BUS_PATH)
     print(BRANCH_PATH)
     get_bus_degree(BRANCH_PATH)          
