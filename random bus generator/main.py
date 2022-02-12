@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import pandas as pd
 import math
 import random
@@ -15,7 +16,6 @@ JSON = ".json"
 
 BUS_PATH = ROOT + DATA + BUS + CSV
 BRANCH_PATH = ROOT + DATA + BRANCH + CSV
-
 
 def make_random_bus_position(path):  
     # bus 데이터 읽기
@@ -86,19 +86,15 @@ def get_bus_degree(path):
     print("connected_bus list result")
     print(connected_bus, "\n", "*"*10)
         
-    # result: connected_bus를 통해 bus간 connected_bus 값 가져오기
+    # result: connected_bus를 통해 bus간 degree 값 가져오기
     result = []
     for i in range(1062):
-        result.append({"bus id": i + 1, "connected_bus": len(connected_bus[i])})
+        result.append({"bus id": i + 1, "degree": len(connected_bus[i])})
     result = pd.DataFrame(result)
-    print("connected_bus dataframe")
+    print("degree dataframe")
     print(result, "\n", "*"*10)
     
-    # result를 히스토그램 형태로 표현
-    result["connected_bus"].plot(kind="hist")
-    plt.show()
-    
-    result.to_json(ROOT + RESULT + BUS + " connected_bus" + JSON)
+    result.to_json(ROOT + RESULT + BUS + " degree" + JSON)
     
 
 if __name__ == '__main__':
