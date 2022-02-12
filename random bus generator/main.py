@@ -86,16 +86,32 @@ def get_bus_degree(path):
     print("connected_bus list result")
     print(connected_bus, "\n", "*"*10)
         
-    # result: connected_bus를 통해 bus간 degree 값 가져오기
-    result = []
+    # bus_degree: connected_bus를 통해 bus간 degree 값 가져오기
+    bus_degree = []
     for i in range(1062):
-        result.append({"bus id": i + 1, "degree": len(connected_bus[i])})
-    result = pd.DataFrame(result)
-    print("degree dataframe")
-    print(result, "\n", "*"*10)
+        bus_degree.append({"bus id": i + 1, "degree": len(connected_bus[i])})
+        
+    # degree_checker: degree 값 당 bus 개수 저장
+    degree_checker = []
+    for i in range(max(map(only_degree, bus_degree)) + 1):
+        degree_checker.append({"degree": i, "count": 0})
+        
+    for i in range(1062):
+        degree_checker[bus_degree[i]["degree"]]["count"] += 1
+    print("bus degree data", degree_checker)    
+        
+    degree_checker = pd.DataFrame(degree_checker)
+    print("degree checker dataframe", degree_checker, "*"*10, sep="\n")
+
+    # degree_checker를 bar chart 형태로 표현
+    hist = degree_checker["count"].plot(kind="bar")
+    hist.set_xticks(np.arange(13))
+    plt.show()
     
-    result.to_json(ROOT + RESULT + BUS + " degree" + JSON)
+    degree_checker.to_json(ROOT + RESULT + BUS + " degree" + JSON)
     
+def only_degree(dic):
+    return dic["degree"]
 
 if __name__ == '__main__':
     # print(BUS_PATH)
