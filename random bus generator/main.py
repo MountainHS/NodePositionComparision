@@ -114,7 +114,7 @@ def only_degree(dic):
     return dic["degree"]
 
 if __name__ == '__main__':
-    # print(BUS_PATH)
-    # make_random_bus_position(BUS_PATH)
-    print(BRANCH_PATH)
-    get_bus_degree(BRANCH_PATH)          
+    print(BUS_PATH)
+    make_random_bus_position(BUS_PATH)
+    # print(BRANCH_PATH)
+    # get_bus_degree(BRANCH_PATH)          
